@@ -1,0 +1,38 @@
+-- Customer Segmentation by Order Count
+
+SELECT 
+  CASE 
+    WHEN order_count <= 3 THEN 'Low Value'
+    WHEN order_count BETWEEN 4 AND 6 THEN 'Mid Value'
+    ELSE 'High Value'
+  END AS segment,
+  COUNT(*) AS customers
+FROM customer_sales_summary
+GROUP BY segment;
+
+-- Monthly New Customer Signups
+
+SELECT 
+  DATE_TRUNC('month', signup_date) AS signup_month,
+  COUNT(*) AS new_customers
+FROM customer_sales_summary
+GROUP BY signup_month
+ORDER BY signup_month;
+
+-- Recency Distribution
+
+SELECT 
+  DATEDIFF(current_date(), last_order_date) AS days_since_last_purchase,
+  COUNT(*) AS customers
+FROM customer_sales_summary
+GROUP BY days_since_last_purchase
+ORDER BY days_since_last_purchase;
+
+--Top 10 Customers by Revenue
+
+SELECT 
+  customer_id,
+  total_sales
+FROM customer_sales_summary
+ORDER BY total_sales DESC
+LIMIT 10;
