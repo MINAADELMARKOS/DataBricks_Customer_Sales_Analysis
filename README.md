@@ -90,3 +90,5 @@ Highlight VIP customers and support account-based strategies.
 ---
 
 
+<img align="left" width="1500" height="800" src="Customer_Sales_Dashboard.png">
+
